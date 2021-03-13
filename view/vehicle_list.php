@@ -1,4 +1,4 @@
-<?php $isAdmin ? include('admin_header.php') : include('header.php'); ?>
+<?php include('header.php'); ?>
 <section class="vehicles_list">
     <?php include('selector_form.php'); ?>
 
@@ -30,21 +30,7 @@
                         <td><?= $type_name ?></td>
                         <td><?= $class_name ?></td>
                         <td><?= '$'.$price.'.00'; ?></td>
-
-                        <?php if($isAdmin) { ?>
-                            <td>
-                                <form action="." METHOD="POST" class="delete_form">
-                                    <input type="hidden" name="action" value="delete_vehicle">
-                                    <input type="hidden" name="year" value="<?= $year ?>">
-                                    <input type="hidden" name="model" value="<?= $model ?>">
-                                    <input type="hidden" name="price" value="<?= $price ?>">
-                                    <input type="hidden" name="make_id" value="<?= $vehicle['make_id'] ?>">
-                                    <input type="hidden" name="type_id" value="<?= $vehicle['type_id'] ?>">
-                                    <input type="hidden" name="class_id" value="<?= $vehicle['class_id'] ?>">
-                                    <button class="delete_btn">Remove</button>
-                                </form>
-                            </td>
-                        <?php } ?>
+                        
                     </tr>
                 <?php } ?>
             </table>
@@ -53,4 +39,4 @@
         <?php } ?>
     </div>
 </section>
-<?php $isAdmin ? include('admin_footer.php') : include('footer.php'); ?>
+<?php include('footer.php'); ?>
