@@ -1,7 +1,7 @@
 <?php
 function get_makes() {
     global $db;
-    $query = "SELECT * FROM make ORDER BY ID ";
+    $query = "SELECT * FROM makes ORDER BY make_id ";
     $statement = $db->prepare($query);
     $statement->execute();
     $makes = $statement->fetchAll();
@@ -11,8 +11,8 @@ function get_makes() {
 
 function get_make_name($make_id) {
     global $db;
-    $query = "SELECT * FROM make
-                WHERE ID = :make_id";
+    $query = "SELECT * FROM makes
+                WHERE make_id = :make_id";
     $statement = $db->prepare($query);
     $statement->bindValue(':make_id', $make_id);
     $statement->execute();

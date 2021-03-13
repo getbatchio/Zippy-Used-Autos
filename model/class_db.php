@@ -2,7 +2,7 @@
 
 function get_classes() {
     global $db;
-    $query = "SELECT * FROM class ORDER BY ID ";
+    $query = "SELECT * FROM classes ORDER BY class_id ";
     $statement = $db->prepare($query);
     $statement->execute();
     $classes = $statement->fetchAll();
@@ -12,8 +12,8 @@ function get_classes() {
 
 function get_class_name($class_id) {
     global $db;
-    $query = "SELECT * FROM class
-                WHERE ID = :class_id";
+    $query = "SELECT * FROM classes
+                WHERE class_id = :class_id";
     $statement = $db->prepare($query);
     $statement->bindValue(':class_id', $class_id);
     $statement->execute();
