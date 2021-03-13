@@ -6,14 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="view/css/main.min.css">
     <link rel="icon" type="image/png" href="view/favicon.ico" />
-    
-    <title>Zippy Used Autos</title>
+
+    <title>Admin-Zippy Used Autos</title>
 </head>
-
-
 <body>
     <main class="main">
-       
     <h1>Zippy Used Autos</h1>
     <hr>
-
