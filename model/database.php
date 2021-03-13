@@ -1,17 +1,13 @@
 <?php
-$url = getenv('JAWSDB_URL');
-$dbparts = parse_url($url);
+    $dsn = 'mysql:host=eyw6324oty5fsovx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=kc9wru2woexyxi29';
+    $username = 'aqirvai49gq5v9k7';
+    $password = 'zlzh68wqsrpvcthy';
+    
 
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
-
-try {
-    $db = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+    try {
+        $db = new PDO($dsn, $username, $password);
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        exit();
     }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
-    }
-
+?>
