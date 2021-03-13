@@ -2,7 +2,7 @@
 
 function get_vehicles() {
     global $db;
-    $query = "SELECT * FROM vehicles ORDER BY model ";
+    $query = "SELECT * FROM vehicles ORDER BY price DESC ";
     $statement = $db->prepare($query);
     $statement->execute();
     $vehicles = $statement->fetchAll();
