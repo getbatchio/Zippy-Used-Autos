@@ -5,7 +5,7 @@ require('model/make_db.php');
 require('model/type_db.php');
 require('model/class_db.php');
 
-$isAdmin = true;
+$isAdmin = false;
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 if (!$action) {
