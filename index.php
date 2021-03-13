@@ -1,3 +1,3 @@
 <?php
-require('./model/database.php');
+require('./model/database2.php');
 
