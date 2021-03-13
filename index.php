@@ -5,8 +5,6 @@ require('model/make_db.php');
 require('model/type_db.php');
 require('model/class_db.php');
 
-$isAdmin = false;
-
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 if (!$action) {
     $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
@@ -36,7 +34,8 @@ switch ($action) {
             if ($class_id) {
                 $filters['class_id'] = $class_id;
             }
-
+            $vehicles_list = get_vehicles_filtered($sort_by, $filters);
+        } else {
             $vehicles_list = get_vehicles();
         }
 
@@ -50,7 +49,7 @@ switch ($action) {
             $vehicles_list[$key]['class_name'] = get_class_name($vehicle['class_id']);
         }
 
-        include('view/vehicles_list.php');
+        include('view/vehicle_list.php');
         break;
 }
 

@@ -1,5 +1,4 @@
 <?php
-
 function get_vehicles() {
     global $db;
     $query = "SELECT * FROM vehicles ORDER BY price DESC ";
@@ -9,35 +8,33 @@ function get_vehicles() {
     $statement->closeCursor();
     return $vehicles;
 };
-function add_vehicle($year, $model, $price, $make_id, $type_id, $class_id) {
-    global $db;
-    $count = 0;
 
-    $query = "INSERT INTO vehicles (year, model, price, make_id, type_id, class_id)
-                VALUES (:year, :model, :price, :make_id, :type_id, :class_id)";
+function get_vehicles_filtered($sort_by, $filters) {
+    global $db;
+    $query = "SELECT * FROM vehicles";
+    $query_array = get_query_expressions($filters);
+
+    if (count($query_array) > 0) {
+        $query .= ' WHERE ';
+        $query .= implode(' AND ', $query_array);
+    }
+
+    $query .= " ORDER BY {$sort_by} DESC";
 
     $statement = $db->prepare($query);
-    $statement->bindValue(':year', $year);
-    $statement->bindValue(':model', $model);
-    $statement->bindValue(':price', $price);
-    $statement->bindValue(':make_id', $make_id);
-    $statement->bindValue(':type_id', $type_id);
-    $statement->bindValue(':class_id', $class_id);
-    if ($statement->execute()) {
-        $count = $statement->rowCount();
-    }
+    $statement->execute();
+    $vehicles = $statement->fetchAll();
     $statement->closeCursor();
-    return $count;
+    return $vehicles;
 };
-// function delete_vehicle($vehicle_id) {
-//     global $db;
-//     $query = 'DELETE FROM assignments WHERE ID - :'
-// }
-    // function get_vehicle_by_class($class_id) {
-    //     global $db;
-    //     if ($class_id) {
-    //         $query = 'SELECT * FROM vehicle ORDER BY class_id DEC'
 
-    //         } else
 
-    // }
+function get_query_expressions($arr) {
+    $query_array = array();
+    foreach($arr as $key => $value) {
+        if ($value != '') {
+            $query_array[] = $key . ' = ' . $value;
+        }
+    }
+    return $query_array;
+};
